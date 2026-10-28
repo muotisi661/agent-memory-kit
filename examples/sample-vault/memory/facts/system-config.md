@@ -17,7 +17,7 @@ verified: 2026-10-14
 ## 工具链
 
 - 编辑器：VS Code，终端用 Windows Terminal
-- 知识库：Obsidian，库在 `D:/Obsidian Vault/`
+- 知识库：Obsidian，库在 `~/Obsidian Vault/`
 - 语义检索：qmd（`qmd query`），索引在 vault 根目录 `.qmd/`
 - 版本控制：git + GitHub（账号在 `memory/facts/github-account.md`）
 

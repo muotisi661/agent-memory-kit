@@ -74,18 +74,21 @@
 
 ## 5 分钟上手
 
+> 下文路径里的 `$HOME/Obsidian Vault` 只是示例 —— 换成你自己的知识库路径即可。
+> 只想试试的话用 `--vault ./demo-vault`。
+
 ```bash
 git clone https://github.com/muotisi661/agent-memory-kit.git
 cd agent-memory-kit
 
 # 1. 在你的知识库里初始化四层结构
-python scripts/amk.py init --vault "D:/Obsidian Vault/memory-root"
+python scripts/amk.py init --vault "$HOME/Obsidian Vault/memory-root"
 
 # 2. 体检
-python scripts/amk.py lint --vault "D:/Obsidian Vault/memory-root"
+python scripts/amk.py lint --vault "$HOME/Obsidian Vault/memory-root"
 
 # 3. 生成会话启动上下文包
-python scripts/amk.py boot --vault "D:/Obsidian Vault/memory-root"
+python scripts/amk.py boot --vault "$HOME/Obsidian Vault/memory-root"
 ```
 
 `init` 之后：

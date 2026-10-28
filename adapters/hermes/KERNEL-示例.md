@@ -7,7 +7,7 @@
 用户：中文，Windows 11，独立开发者。沟通极简，期望直接行动不要多问。输出必须中文，去 AI 痕迹，一次成功不反复确认。
 msys/git-bash 的 rm 直接永久删除，不进回收站。执行前必须确认路径。
 不要把密码/token/API key 写进任何记忆文件或 git 仓库。
-知识库：D:\Obsidian Vault\
+知识库：~/Obsidian Vault/
 系统配置：memory/facts/system-config.md
 GitHub 账号：memory/facts/github-account.md
 §

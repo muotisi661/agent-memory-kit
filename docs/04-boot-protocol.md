@@ -124,7 +124,7 @@ python scripts/amk.py boot --vault ~/my-vault
 → 读 memory/facts/freellmapi配置.md
 
 文件内容：
-  - 位置 D:\Hermes project\freellmapi
+  - 位置 ~/projects/freellmapi
   - pm2 管理：pm2 start dist/index.js --name freellmapi
   - 端口见 server/.env，实测 curl localhost:3001/v1/models
   - 坑：NODE_MODULE_VERSION 不匹配 → npm rebuild better-sqlite3

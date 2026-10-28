@@ -1,6 +1,9 @@
 # 09 · 分支：本地知识库选 Obsidian
 
-前面八篇讲的是方法，存储层用什么都能跑。这一篇讲**具体落地到 Obsidian** 的完整操作流程 —— 什么时候该选它、装什么、怎么接、以及 Obsidian 特有的六个坑。
+前面八篇讲的是方法，存储层用什么都能跑。
+
+> 本文所有路径都是示例：`~/Obsidian Vault` 指你的 Obsidian 库根目录，
+> 换成自己的实际路径即可（git-bash 里 `~` 就是用户目录）。这一篇讲**具体落地到 Obsidian** 的完整操作流程 —— 什么时候该选它、装什么、怎么接、以及 Obsidian 特有的六个坑。
 
 ## 先决策：要不要上 Obsidian
 
@@ -22,7 +25,7 @@
 ### ❌ 别把记忆库直接建在 vault 根
 
 ```bash
-amk.py init --vault "D:/Obsidian Vault"      # 不推荐
+amk.py init --vault "$HOME/Obsidian Vault"      # 不推荐
 ```
 
 `init` 会写 `index.md` 和 `changelog.md` —— 和知识库自己的主索引撞名，而且 `kernel/` `memory/` 混在一堆笔记里，人一眼看不出边界。
@@ -30,11 +33,11 @@ amk.py init --vault "D:/Obsidian Vault"      # 不推荐
 ### ✅ 建在 vault 下的独立子目录
 
 ```bash
-amk.py init --vault "D:/Obsidian Vault/memory-root"
+amk.py init --vault "$HOME/Obsidian Vault/memory-root"
 ```
 
 ```
-D:/Obsidian Vault/                 ← Obsidian 库根
+~/Obsidian Vault/                 ← Obsidian 库根
 ├── .obsidian/                     ← 配置与插件（不要提交，不要被智能体动）
 │   ├── app.json
 │   ├── community-plugins.json
@@ -84,16 +87,16 @@ D:/Obsidian Vault/                 ← Obsidian 库根
 cd ~/agent-memory-kit
 
 # 1. 建结构
-python scripts/amk.py init --vault "D:/Obsidian Vault/memory-root"
+python scripts/amk.py init --vault "$HOME/Obsidian Vault/memory-root"
 
 # 2. 填 L0（用编辑器或 Obsidian 打开）
 #    kernel/KERNEL.md  —— 身份锚点 / 硬性约束 / 关键路径 / 指针
 
 # 3. 体检
-python scripts/amk.py lint --vault "D:/Obsidian Vault/memory-root"
+python scripts/amk.py lint --vault "$HOME/Obsidian Vault/memory-root"
 ```
 
-然后在 Obsidian 里 `打开文件夹作为库` → 选 `D:/Obsidian Vault`（**选 vault 根，不是 memory-root**）。
+然后在 Obsidian 里 `打开文件夹作为库` → 选 `~/Obsidian Vault`（**选 vault 根，不是 memory-root**）。
 记忆库会作为普通文件夹出现在左侧文件树里，能直接点开编辑 —— 这正是要的效果。
 
 ---
@@ -107,7 +110,7 @@ python scripts/amk.py lint --vault "D:/Obsidian Vault/memory-root"
 安装（社区市场搜 `Local REST API`，或手动）：
 
 ```bash
-cd "D:/Obsidian Vault/.obsidian/plugins"
+cd "$HOME/Obsidian Vault/.obsidian/plugins"
 mkdir -p obsidian-local-rest-api && cd obsidian-local-rest-api
 curl -sL -o main.js     "https://github.com/coddingtonbear/obsidian-local-rest-api/releases/latest/download/main.js"
 curl -sL -o manifest.json "https://github.com/coddingtonbear/obsidian-local-rest-api/releases/latest/download/manifest.json"
@@ -144,7 +147,7 @@ hermes mcp test obsidian
 2. **关键**：Smart Connections 有两个配置文件，`smart_env.json` 覆盖 `data.json`：
 
 ```jsonc
-// D:/Obsidian Vault/.smart-env/smart_env.json    ← 权威，必须改这个
+// ~/Obsidian Vault/.smart-env/smart_env.json    ← 权威，必须改这个
 {
   "smart_sources": {
     "embed_model": {
@@ -173,7 +176,7 @@ hermes mcp test obsidian
 ### A. qmd（推荐）—— 命令行/ MCP，混合检索
 
 ```bash
-cd "D:/Obsidian Vault"
+cd "$HOME/Obsidian Vault"
 qmd collection add vault --pattern "**/*.md"     # 一次
 qmd update                                       # 增量重建（新增/改动）
 qmd embed                                         # 生成向量（CPU 密集，放后台）
@@ -196,7 +199,7 @@ qmd query "嵌入模型 配置 端口"                     # 使用
 Hermes 自带 `search_files`（ripgrep）。记忆库只有几百个文件时，精确关键词搜索比向量检索更快更准：
 
 ```bash
-rg -n "相变片|温度" "D:/Obsidian Vault/memory-root/memory/"
+rg -n "相变片|温度" "$HOME/Obsidian Vault/memory-root/memory/"
 ```
 
 **向量检索的定位是"记不清关键词时的兜底"**，不是默认路径。别为了"看起来智能"给每个查询都套一层向量。
@@ -221,7 +224,7 @@ Obsidian 重命名文件时，会自动更新 `[[wikilink]]`，但**不会**更�
 **处理**：重命名后立刻体检
 
 ```bash
-python scripts/amk.py lint --vault "D:/Obsidian Vault/memory-root"
+python scripts/amk.py lint --vault "$HOME/Obsidian Vault/memory-root"
 # 输出：kernel/KERNEL.md: 指针失效 → memory/facts/system-config.md
 ```
 
@@ -314,7 +317,7 @@ cd "$(npm root -g)/@tobilu/qmd" && npm rebuild better-sqlite3
 ```markdown
 ## Obsidian 协作规则
 
-- 记忆库路径：D:/Obsidian Vault/memory-root/
+- 记忆库路径：~/Obsidian Vault/memory-root/
 - 只用 read_file / write_file / search_files 读写；不要动 .obsidian/、.smart-env/
 - 用户可能同时在 Obsidian 里编辑同一个文件：写之前先读一遍，不要凭记忆覆盖
 - 新建记忆文件用 `YYYY-MM-DD-主题.md`（session-notes）或 `主题.md`（facts）
@@ -344,7 +347,7 @@ cd "$(npm root -g)/@tobilu/qmd" && npm rebuild better-sqlite3
 ## 八、验收清单
 
 ```bash
-VAULT="D:/Obsidian Vault/memory-root"
+VAULT="$HOME/Obsidian Vault/memory-root"
 
 python scripts/amk.py lint  --vault "$VAULT"     # 0 错误
 python scripts/amk.py stats --vault "$VAULT"     # L0 占用 < 70%

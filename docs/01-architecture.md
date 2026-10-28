@@ -41,7 +41,7 @@ msys/git-bash 的 rm 直接永久删除，不进回收站。执行前必须确�
 model 段配置只能 `hermes config set`，patch/write_file 会被静默拒绝。
 
 # 环境关键路径（不记住就找不到东西）
-知识库：D:\Obsidian Vault\
+知识库：~/Obsidian Vault/
 详细配置：memory/facts/system-config.md
 GitHub 账号：memory/facts/github-account.md
 

@@ -106,7 +106,7 @@ grep 'load_failed' .smart-env/event_logs/* 2>/dev/null | head
 | `端口: 3001` | `端口见 server/.env，实测 curl -s localhost:$PORT/v1/models` |
 | `密码: xxx` | `凭据在系统钥匙串/银行级加密库，通过工具调用获取` |
 | `版本: v4.1.3` | `版本查 `npm ls obsidian-local-rest-api`` |
-| `路径: /d/Obsidian Vault` | 路径可以写 —— 但加 `verified: 2026-10-16` |
+| `路径: ~/Obsidian Vault` | 路径可以写 —— 但加 `verified: 2026-10-16` |
 
 **纠正时的规则**：以实测为准。实测和文档冲突 → **直接改文件**，更新 `verified` 日期。
 **不要**写成：

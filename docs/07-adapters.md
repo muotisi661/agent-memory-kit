@@ -5,7 +5,7 @@
 ## Hermes 的注入机制（L0 的落点）
 
 ```
-Windows:  C:\Users\<user>\AppData\Local\hermes\
+Windows:  %LOCALAPPDATA%\hermes\            (git-bash: ~/AppData/Local/hermes/)
 Linux:    ~/.local/share/hermes/
 ├── SOUL.md              ← 人格与行为规范，每轮加载
 ├── memories/
@@ -36,7 +36,7 @@ Linux:    ~/.local/share/hermes/
 ### 1. 初始化知识库
 
 ```bash
-python scripts/amk.py init --vault "D:/Obsidian Vault/memory-root"
+python scripts/amk.py init --vault "$HOME/Obsidian Vault/memory-root"
 ```
 
 Hermes 用户通常把 vault 指向 Obsidian 库里的一个子目录，这样人能看、智能体也能读。

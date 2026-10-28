@@ -24,7 +24,7 @@
 
 ```markdown
 ## FreeLLMAPI
-- 服务定义：D:\Hermes project\freellmapi（pm2 管理）
+- 服务定义：~/projects/freellmapi（pm2 管理）
 - 端口：见 `server/.env` 的 PORT，实测 `curl -s localhost:3001/v1/models | head -c 100`
 - 状态以实测为准，不以文档为准
 
