@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Obsidian 插件缓存（vault 放进 git 时忽略）
+.smart-env/
+.trash/
+*.lock
+
+# 记忆库运行时产物（如果你把自己的 vault 也提交上来）
+# archive/reports/*.tmp
