@@ -111,6 +111,25 @@ memory-root/
 
 ---
 
+## 存储层：两种形态，方法一样
+
+L1 只是一堆 Markdown，放哪都行。按"要不要人也看"来选：
+
+| | 纯目录 | **Obsidian** |
+|---|---|---|
+| 智能体读写 | ✅ | ✅ |
+| 人能浏览 / 编辑 / 手机看 | ❌ | ✅ 图形界面 + 图谱 + 双链 |
+| 额外依赖 | 零 | Obsidian + 2 个插件 + 本地端口 |
+| 故障面 | 小 | 多（插件、端口、索引、同步冲突） |
+
+- **只要智能体自己用** → 纯目录，`amk.py init --vault <任意路径>` 就完事。
+- **需要人也在里面翻** → 走 Obsidian：[docs/09-obsidian.md](docs/09-obsidian.md)
+  有完整的落地流程（库放哪、装哪两个插件、怎么接 MCP、索引两条路、以及 Obsidian 特有的
+  6 个坑：改名断指针、Linter 重排 frontmatter、"索引建了但向量是 0"、回收站差异、
+  整理任务吃掉记忆目录、国内网络两个卡点）。
+
+---
+
 ## CLI
 
 单文件、零第三方依赖、Python 3.9+。
@@ -180,13 +199,14 @@ amk.py boot --vault "$VAULT" --query "上次那个部署脚本放哪了"
 ## 目录
 
 ```
-docs/       方法论：架构、写入协议、升降级、启动协议、维护、反模式、接入、迁移
+docs/       方法论：架构、写入协议、升降级、启动协议、维护、反模式、接入、迁移、Obsidian 分支
 scripts/    amk.py 单文件 CLI
 adapters/   Hermes desktop 接入片段：SOUL 协议、cron 提示词、L0 示例
 examples/   脱敏样例 vault，可直接 lint 跑通
 ```
 
-建议阅读顺序：`README` → `docs/01` → `docs/03` → `docs/02` → `docs/07` → 其余按需。
+建议阅读顺序：`README` → `docs/01` → `docs/03` → `docs/02` → `docs/07`
+→（选了 Obsidian 的话）`docs/09` → 其余按需。
 
 ## License
 
